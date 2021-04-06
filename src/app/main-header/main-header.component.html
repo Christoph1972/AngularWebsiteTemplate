@@ -3,24 +3,24 @@
         <!-- https://tburleson-layouts-demos.firebaseapp.com/#/docs -->
         <div fxLayout="row">
             <button mat-button>
-                <span class="logo">Navbar Header Demo</span>
+                <span class="logo">Website Template</span>
             </button>
             <div *ngIf="!deviceXS">
-                <button #navButton mat-button>Home</button>
-                <button #navButton mat-button>About</button>
-                <button #navButton mat-button>Contact</button>               
+                <button #navButton mat-button routerLink="home">Home</button>
+                <button #navButton mat-button routerLink="about">About</button>
+                <button #navButton mat-button routerLink="contact">Contact</button>
             </div>
         </div>
-        <div>           
+        <div>
             <button *ngIf="deviceXS" (click)="toggleMenu()" mat-icon-button>
-                <mat-icon #toggleButton  class="burger-menu" aria-label="Side nav toggle icon">menu</mat-icon>
+                <mat-icon #toggleButton class="burger-menu" aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
         </div>
     </mat-toolbar-row>
 
-    <mat-toolbar-row *ngIf="menuVisible" fxLayoutAlign="space-between end">
-        <button #navButton mat-button>Home</button>
-        <button #navButton mat-button>About</button>
-        <button #navButton mat-button>Contact</button>       
+    <mat-toolbar-row class="toolbar-row" *ngIf="menuVisible" fxLayout="column" fxLayoutAlign="space-around stretch" >
+        <button #navButton mat-button routerLink="home" (click)="closeMenu()">Home</button>
+        <button #navButton mat-button routerLink="about" (click)="closeMenu()">About</button>
+        <button #navButton mat-button routerLink="contact" (click)="closeMenu()">Contact</button>
     </mat-toolbar-row>
 </mat-toolbar>
