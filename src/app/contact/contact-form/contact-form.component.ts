@@ -12,4 +12,10 @@ export class ContactFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  startValue: string = "your name";
+
+  startEmail = "1234@email.de"
+
+  searchstring = "";
+
 }

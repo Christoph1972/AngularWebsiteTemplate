@@ -1,1 +1,22 @@
-<h1>contact-form works!</h1>
+<form #myForm="ngForm" [ngFormOptions]="{ updateOn: 'change'}">
+
+    <!--[ngModelOptions]="{ standalone: true} schliesst das Model aus dem Formular aus.-->
+    <!--[(ngModel)]="searchstring"  [()] macht eine bidirektionale Bindung-->
+    <input type="text" [(ngModel)]="searchstring" name="searchstring" [ngModelOptions]="{ standalone: true}">
+    <p>Search:{{searchstring}}</p>
+
+    <span ngModelGroup="personalData">
+        <!--blur (lost focus), change, submit übernimmt erst nach einem submit-->
+        <input [ngModel]="startValue" [ngModelOptions]="{name: 'username', updateOn: 'blur'}" type="text" id="name"
+            placeholder="name">
+        <br>
+        <input email="" #email="ngModel" ngModel name="email" type="email" id="email" placeholder="email">
+        {{email.valid}}
+    </span>
+
+    <textarea ngModel name="message" id="msg" cols="30" rows="10" placeholder="Nachricht"></textarea>
+    <br>
+    <button type="submit" [disabled]="myForm.invalid">Senden</button>  
+</form>
+<p>{{myForm.value | json}}</p>
+<p>{{myForm.valid}} </p>
