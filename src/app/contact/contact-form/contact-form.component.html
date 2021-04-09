@@ -1,4 +1,4 @@
-<form #myForm="ngForm" [ngFormOptions]="{ updateOn: 'change'}">
+<form #myForm="ngForm" [ngFormOptions]="{ updateOn: 'change'}" (ngSubmit)="send(myForm.value)">
 
     <!--[ngModelOptions]="{ standalone: true} schliesst das Model aus dem Formular aus.-->
     <!--[(ngModel)]="searchstring"  [()] macht eine bidirektionale Bindung-->
@@ -7,16 +7,33 @@
 
     <span ngModelGroup="personalData">
         <!--blur (lost focus), change, submit übernimmt erst nach einem submit-->
-        <input [ngModel]="startValue" [ngModelOptions]="{name: 'username', updateOn: 'blur'}" type="text" id="name"
-            placeholder="name">
+
+        <input #name="ngModel" [ngModel]="startValue" [ngModelOptions]="{name: 'username', updateOn: 'blur'}"
+            type="text" id="name" placeholder="name">
+
+        <span>
+             <!--also untouched-->
+            <span>Is touched: {{name.touched}}</span>
+           
+            <span> - </span>
+
+              <!--also dirty-->
+            <span>Is pritstine: {{name.pristine}}</span>          
+        </span>
+
+        <div>
+            <input required class="street" #street="ngModel" ngModel name="street" [ngModelOptions]="{name: 'street', updateOn: 'blur'}"
+                type="text" placeholder="street">
+                <span>Valid: {{street.valid}}</span>
+        </div>
         <br>
-        <input email="" #email="ngModel" ngModel name="email" type="email" id="email" placeholder="email">
+        <input required email="" #email="ngModel" ngModel name="email" type="email" id="email" placeholder="email">
         {{email.valid}}
     </span>
 
-    <textarea ngModel name="message" id="msg" cols="30" rows="10" placeholder="Nachricht"></textarea>
+    <textarea required ngModel name="message" id="msg" cols="30" rows="10" placeholder="Nachricht"></textarea>
     <br>
-    <button type="submit" [disabled]="myForm.invalid">Senden</button>  
+    <button type="submit" [disabled]="myForm.invalid">Senden</button>
 </form>
 <p>{{myForm.value | json}}</p>
 <p>{{myForm.valid}} </p>
