@@ -33,6 +33,8 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
     console.log("Data from Form", formData);
     console.log("##########################")
     console.log("Data from TS class", this.myForm?.value);
+
+    this.myForm?.reset();
   }
 
 }

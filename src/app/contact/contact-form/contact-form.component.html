@@ -33,7 +33,8 @@
 
     <textarea required ngModel name="message" id="msg" cols="30" rows="10" placeholder="Nachricht"></textarea>
     <br>
-    <button type="submit" [disabled]="myForm.invalid">Senden</button>
+    <button type="submit" [disabled]="myForm?.invalid">Senden</button>
+    <button type="reset" [disabled]="myForm?.pristine">Reset</button>
 </form>
 <p>{{myForm.value | json}}</p>
 <p>{{myForm.valid}} </p>
