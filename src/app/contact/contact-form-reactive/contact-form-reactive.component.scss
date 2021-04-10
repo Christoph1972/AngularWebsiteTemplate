@@ -1,4 +1,11 @@
-input.ng-invalid.ng-touched {
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+
+input.ng-invalid.ng-dirty {
     border-width: 3px;
     border-style: solid;
     border-color: red;
