@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, FormBuilder } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-contact-form-reactive',
@@ -9,6 +9,7 @@ import {FormGroup, FormControl, FormBuilder } from "@angular/forms";
 export class ContactFormReactiveComponent implements OnInit {
 
   myForm!: FormGroup;
+  
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -23,17 +24,23 @@ export class ContactFormReactiveComponent implements OnInit {
       {
         personalData: this.formBuilder.group(
           {
-            name: new FormControl(''),
-            street: new FormControl(''),
-            email: new FormControl('')
+            name: new FormControl('', Validators.required),
+            street: new FormControl('', Validators.required),
+            email: new FormControl('', [Validators.required, Validators.email])
           }),
-        message: new FormControl('')
+        message: new FormControl('', Validators.required)
       }
     );
   }
 
-  send(myForm : FormGroup): void {
-    console.log("Value from TS class:",this.myForm.value);
+
+  public get name() { return this.myForm.get(['personalData', 'name']); }
+  public get street() { return this.myForm.get(['personalData', 'street']); }
+  public get email() { return this.myForm.get(['personalData', 'email']); }
+
+
+  send(myForm: FormGroup): void {
+    console.log("Value from TS class:", this.myForm.value);
     console.log("##########################")
     console.log("Value from form:", myForm.value);
   }

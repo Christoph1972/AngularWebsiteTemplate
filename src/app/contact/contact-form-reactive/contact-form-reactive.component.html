@@ -5,22 +5,32 @@
         <div>
             <label>
                 Name:
-                <input type="text" formControlName="name">
+                <input class="userName" type="text" formControlName="name" placeholder="Enter your name">
+                <span class="error-message" *ngIf="name?.dirty && name?.invalid">Name required</span>
             </label>
         </div>
         <div>
             <label>
                 Street:
                 <input type="text" formControlName="street">
+                <span class="error-message" *ngIf="street?.dirty && street?.invalid">Street required</span>
             </label>
         </div>
         <div>
             <label>
                 Email:
-                <input type="text" formControlName="email">
+                <input type="email" formControlName="email">
+                <span class="error-message" *ngIf="email?.dirty && email?.invalid">Email required</span>
             </label>
         </div>
     </span>
 
-    <button type="submit">Send</button>
+    <textarea required formControlName="message" id="msg" cols="30" rows="10" placeholder="Message"></textarea>
+    <br>
+    <button type="submit" [disabled]="myForm.invalid">Send</button>
+    <br>
+    {{myForm.valid}}
+    <br>
+    {{myForm.value | json}}
+
 </form>

@@ -8,23 +8,26 @@
     <span ngModelGroup="personalData">
         <!--blur (lost focus), change, submit übernimmt erst nach einem submit-->
 
-        <input #name="ngModel" [ngModel]="startValue" [ngModelOptions]="{name: 'username', updateOn: 'blur'}"
+        <input required #name="ngModel" [ngModel]="startValue" [ngModelOptions]="{name: 'username', updateOn: 'blur'}"
             type="text" id="name" placeholder="name">
 
         <span>
-             <!--also untouched-->
+            <!--also untouched-->
             <span>Is touched: {{name.touched}}</span>
-           
+
             <span> - </span>
 
-              <!--also dirty-->
-            <span>Is pritstine: {{name.pristine}}</span>          
+            <!--also dirty-->
+            <span>Is pritstine: {{name.pristine}}</span>
         </span>
 
+        <div *ngIf="name.touched && name.invalid">Please enter a name</div>
+
         <div>
-            <input required class="street" #street="ngModel" ngModel name="street" [ngModelOptions]="{name: 'street', updateOn: 'blur'}"
-                type="text" placeholder="street">
-                <span>Valid: {{street.valid}}</span>
+            <input  required #street="ngModel" ngModel name="street" [ngModelOptions]="{name: 'street', updateOn: 'blur'}" type="text" placeholder="street">
+            <span>Valid: {{street.valid}}</span>
+            <!-- <div *ngIf="street.dirty && street.errors?.required">Please enter a street</div> -->
+            <!-- <div *ngIf="street.touched && street.invalid">Street min length is 3 current is  {{street.errors?.minlength.actualLength}}</div> -->
         </div>
         <br>
         <input required email="" #email="ngModel" ngModel name="email" type="email" id="email" placeholder="email">
