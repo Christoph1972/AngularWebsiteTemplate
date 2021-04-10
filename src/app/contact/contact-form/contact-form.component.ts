@@ -10,7 +10,7 @@ export class ContactFormComponent implements OnInit, AfterViewInit {
 
 
   @ViewChild('myForm', { 'read': NgForm })
-  myForm: NgForm | undefined;
+  myForm!: NgForm ;
 
   constructor() { }
 
