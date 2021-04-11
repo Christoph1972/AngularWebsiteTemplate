@@ -32,5 +32,34 @@
     {{myForm.valid}}
     <br>
     {{myForm.value | json}}
+    <br>
+    <hr>
+    <div>
+        <label>
+            Select a date in future:
+            <input type="date" formControlName="desiredDate">
+            <div *ngIf="desiredDate?.errors?.future">Future Error: {{desiredDate?.errors | json}}</div>
+        </label>
+    </div>
+
+
+    <div>
+        <hr>
+        <br>
+        <span>
+            <label>
+                Select a date in future:
+                <input type="date" formControlName="startDate">
+                <!-- <div *ngIf="desiredDate?.errors?.future">Future Error: {{desiredDate?.errors | json}}</div> -->
+            </label>
+            <label>
+                Select a date in future:
+                <input type="date" formControlName="endDate">
+                <!-- <div *ngIf="desiredDate?.errors?.future">Future Error: {{desiredDate?.errors | json}}</div> -->
+            </label>
+        </span>
+    </div>
+
+
 
 </form>

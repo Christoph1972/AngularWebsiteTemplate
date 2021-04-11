@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
+import { MyDateValidators } from 'src/app/my-validators/my-date-validators';
 
 @Component({
   selector: 'app-contact-form-reactive',
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms"
 export class ContactFormReactiveComponent implements OnInit {
 
   myForm!: FormGroup;
-  
+
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -28,7 +29,12 @@ export class ContactFormReactiveComponent implements OnInit {
             street: new FormControl('', Validators.required),
             email: new FormControl('', [Validators.required, Validators.email])
           }),
-        message: new FormControl('', Validators.required)
+        message: new FormControl('', Validators.required),
+         //TODO: set a initial data to todoay: https://stackoverflow.com/questions/55660262/how-can-i-set-my-reactive-form-date-input-value 
+        desiredDate: new FormControl('', [MyDateValidators.isInFuture, Validators.required]),
+
+        startDate: new FormControl('', [MyDateValidators.isInFuture, Validators.required]),
+        endDate: new FormControl('', [MyDateValidators.isInFuture, Validators.required]),
       }
     );
   }
@@ -37,6 +43,10 @@ export class ContactFormReactiveComponent implements OnInit {
   public get name() { return this.myForm.get(['personalData', 'name']); }
   public get street() { return this.myForm.get(['personalData', 'street']); }
   public get email() { return this.myForm.get(['personalData', 'email']); }
+
+
+  public get message() { return this.myForm.get('message'); } 
+  public get desiredDate() { return this.myForm.get('desiredDate'); }
 
 
   send(myForm: FormGroup): void {
