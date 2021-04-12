@@ -34,7 +34,7 @@ export class ContactFormReactiveComponent implements OnInit {
         desiredDate: new FormControl('', [MyDateValidators.isInFuture, Validators.required]),
 
         startDate: new FormControl('', [MyDateValidators.isInFuture, Validators.required]),
-        endDate: new FormControl('', [MyDateValidators.isHigher(new Date(2021, 4, 20)), Validators.required]),
+        endDate: new FormControl('', [MyDateValidators.isHigher(new Date(2021, 3, 20)), Validators.required]),
       }
     );
   }

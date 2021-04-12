@@ -26,7 +26,7 @@ export class MyDateValidators {
             const selectedDate = new Date(control.value);
 
             const dateNow = condition ? condition : new Date();
-            
+
             const isInFuture = selectedDate > dateNow;
 
             console.log("Validator;", "Now:", dateNow, "Selected:", selectedDate, "Is lager:", isInFuture);
