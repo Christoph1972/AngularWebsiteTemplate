@@ -30,11 +30,11 @@ export class ContactFormReactiveComponent implements OnInit {
             email: new FormControl('', [Validators.required, Validators.email])
           }),
         message: new FormControl('', Validators.required),
-         //TODO: set a initial data to todoay: https://stackoverflow.com/questions/55660262/how-can-i-set-my-reactive-form-date-input-value 
+        //TODO: set a initial data to todoay: https://stackoverflow.com/questions/55660262/how-can-i-set-my-reactive-form-date-input-value 
         desiredDate: new FormControl('', [MyDateValidators.isInFuture, Validators.required]),
 
         startDate: new FormControl('', [MyDateValidators.isInFuture, Validators.required]),
-        endDate: new FormControl('', [MyDateValidators.isInFuture, Validators.required]),
+        endDate: new FormControl('', [MyDateValidators.isHigher(new Date(2021, 4, 20)), Validators.required]),
       }
     );
   }
@@ -45,7 +45,7 @@ export class ContactFormReactiveComponent implements OnInit {
   public get email() { return this.myForm.get(['personalData', 'email']); }
 
 
-  public get message() { return this.myForm.get('message'); } 
+  public get message() { return this.myForm.get('message'); }
   public get desiredDate() { return this.myForm.get('desiredDate'); }
 
 
