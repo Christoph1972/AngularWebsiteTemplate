@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
+import { BetweenValidator } from 'src/app/my-validators/between-validator';
 import { MyDateValidators } from 'src/app/my-validators/my-date-validators';
 
 @Component({
@@ -35,6 +36,7 @@ export class ContactFormReactiveComponent implements OnInit {
 
         startDate: new FormControl('', [MyDateValidators.isInFuture, Validators.required]),
         endDate: new FormControl('', [MyDateValidators.isHigher(new Date(2021, 3, 20)), Validators.required]),
+        numberInput : new FormControl('', BetweenValidator.isBetween)
       }
     );
   }
